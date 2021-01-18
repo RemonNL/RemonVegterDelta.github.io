@@ -1,0 +1,39 @@
+<html>
+<head><title>Leaflet.js Essentials</title>
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+
+<style>
+    #map { position: absolute; top:0; bottom:0; right:0; left:0;z-index:0}
+	p {position: absolute; top: 0; right: 0; z-index:1; background-color: white}
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+<!-- data -->
+<script src="Gemaaktelijntjes.js"></script>
+<script src="Coast.js"></script>
+
+<script> //map initilizer
+var map = L.map('map', {center: [ 30.164126343161097,-91.24145507812501],zoom: 7});
+L.tileLayer('https://api.mapbox.com/styles/v1/remon2001/ckj2w0xb01se119nj85ojl0oj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVtb24yMDAxIiwiYSI6ImNrNDl5aHhweDA5cGcza3A4bzc1enA3YTMifQ.7qRkNHAk_ikI0ifs6YK4NQ').addTo(map);
+
+map.scrollWheelZoom.disable()
+
+var geoJsonLayer = L.geoJson(Geenidee).addTo(map);
+var geoJsonLayer = L.geoJson(Geenidee1).addTo(map);
+</script>
+
+<p><a href="javascript:map.removeLayer(geoJsonLayer)">hide</a> | <a href="javascript:geoJsonLayer.addTo(map)">show</a></p>
+
+</body>
+</html>
+
